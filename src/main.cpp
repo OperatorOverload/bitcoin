@@ -17,7 +17,6 @@
 #include "ui_interface.h"
 #include "util.h"
 
-#include <inttypes.h>
 #include <sstream>
 
 #include <boost/algorithm/string/replace.hpp>
@@ -86,7 +85,7 @@ struct CBlockIndexWorkComparator
 };
 
 CBlockIndex *pindexBestInvalid;
-set<CBlockIndex*, CBlockIndexWorkComparator> setBlockIndexValid; // may contain all CBlockIndex*'s that have validness >=BLOCK_VALID_TRANSACTIONS, and must contain those who aren't failed
+std::set<CBlockIndex*, CBlockIndexWorkComparator> setBlockIndexValid; // may contain all CBlockIndex*'s that have validness >=BLOCK_VALID_TRANSACTIONS, and must contain those who aren't failed
 
 CCriticalSection cs_LastBlockFile;
 CBlockFileInfo infoLastBlockFile;
@@ -830,11 +829,11 @@ bool GetTransaction(const uint256 &hash, CTransaction &txOut, uint256 &hashBlock
                     fseek(file, postx.nTxOffset, SEEK_CUR);
                     file >> txOut;
                 } catch (std::exception &e) {
-                    return error("%s() : deserialize or I/O error", __PRETTY_FUNCTION__);
+                    return error("%s() : deserialize or I/O error", BOOST_CURRENT_FUNCTION);
                 }
                 hashBlock = header.GetHash();
                 if (txOut.GetHash() != hash)
-                    return error("%s() : txid mismatch", __PRETTY_FUNCTION__);
+                    return error("%s() : txid mismatch", BOOST_CURRENT_FUNCTION);
                 return true;
             }
         }
@@ -918,7 +917,7 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos)
         filein >> block;
     }
     catch (std::exception &e) {
-        return error("%s() : deserialize or I/O error", __PRETTY_FUNCTION__);
+        return error("%s() : deserialize or I/O error", BOOST_CURRENT_FUNCTION);
     }
 
     // Check the header
@@ -2804,7 +2803,7 @@ bool LoadExternalBlockFile(FILE* fileIn, CDiskBlockPos *dbp)
                         break;
                 }
             } catch (std::exception &e) {
-                LogPrintf("%s() : Deserialize or I/O error caught during load\n", __PRETTY_FUNCTION__);
+                LogPrintf("%s() : Deserialize or I/O error caught during load\n", BOOST_CURRENT_FUNCTION);
             }
         }
         fclose(fileIn);

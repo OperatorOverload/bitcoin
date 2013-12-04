@@ -11,7 +11,7 @@
 #include "util.h"
 
 #include <algorithm>
-#include <inttypes.h>
+
 #include <map>
 
 #include <boost/algorithm/string/classification.hpp>

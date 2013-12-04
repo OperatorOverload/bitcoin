@@ -11,7 +11,11 @@
 #include "sync.h"
 #include "wallet.h"
 
+#ifndef _MSC_VER
 #include <inttypes.h>
+#else
+#define PRId64 "lld"
+#endif
 
 #include <boost/filesystem.hpp>
 #include <boost/foreach.hpp>

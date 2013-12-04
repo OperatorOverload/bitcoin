@@ -246,107 +246,225 @@ protected:
 
 public:
 
-    IMPLEMENT_SERIALIZE
-    (({
-        // serialized format:
-        // * version byte (currently 0)
-        // * nKey
-        // * nNew
-        // * nTried
-        // * number of "new" buckets
-        // * all nNew addrinfos in vvNew
-        // * all nTried addrinfos in vvTried
-        // * for each bucket:
-        //   * number of elements
-        //   * for each element: index
-        //
-        // Notice that vvTried, mapAddr and vVector are never encoded explicitly;
-        // they are instead reconstructed from the other information.
-        //
-        // vvNew is serialized, but only used if ADDRMAN_UNKOWN_BUCKET_COUNT didn't change,
-        // otherwise it is reconstructed as well.
-        //
-        // This format is more complex, but significantly smaller (at most 1.5 MiB), and supports
-        // changes to the ADDRMAN_ parameters without breaking the on-disk structure.
-        {
-            LOCK(cs);
-            unsigned char nVersion = 0;
-            READWRITE(nVersion);
-            READWRITE(nKey);
-            READWRITE(nNew);
-            READWRITE(nTried);
+    unsigned int GetSerializeSize(int nType, int nVersion) 
+      const { 
+         CSerActionGetSerializeSize ser_action;
 
-            CAddrMan *am = const_cast<CAddrMan*>(this);
-            if (fWrite)
+         const bool fGetSize = true;
+         const bool fWrite = false;
+
+         const bool fRead = false;
+         unsigned int nSerSize = 0;
+
+         ser_streamplaceholder s;
+         //(void)( (!!(fGetSize||fWrite||fRead)) || (_wassert(_CRT_WIDE("fGetSize||fWrite||fRead"), _CRT_WIDE(__FILE__), __LINE__), 0) );
+         //(void)( (!!(fGetSize||fWrite||fRead)) || (_wassert(_CRT_WIDE("fGetSize||fWrite||fRead"), _CRT_WIDE(__FILE__), __LINE__), 0);
+         s.nType = nType;
+         s.nVersion = nVersion;
+         {
             {
-                int nUBuckets = ADDRMAN_NEW_BUCKET_COUNT;
-                READWRITE(nUBuckets);
-                std::map<int, int> mapUnkIds;
-                int nIds = 0;
-                for (std::map<int, CAddrInfo>::iterator it = am->mapInfo.begin(); it != am->mapInfo.end(); it++)
-                {
-                    if (nIds == nNew) break; // this means nNew was wrong, oh ow
-                    mapUnkIds[(*it).first] = nIds;
-                    CAddrInfo &info = (*it).second;
-                    if (info.nRefCount)
-                    {
-                        READWRITE(info);
+               {
+                  CCriticalBlock criticalblock(cs, "cs", __FILE__, __LINE__);
+                  unsigned char nVersion = 0;
+                  (nSerSize += ::SerReadWrite(s, (nVersion), nType, nVersion, ser_action));
+                  (nSerSize += ::SerReadWrite(s, (nKey), nType, nVersion, ser_action));
+                  (nSerSize += ::SerReadWrite(s, (nNew), nType, nVersion, ser_action));
+                  (nSerSize += ::SerReadWrite(s, (nTried), nType, nVersion, ser_action));
+                  CAddrMan *am = const_cast<CAddrMan*>(this);
+                  if (fWrite) { int nUBuckets = 256;
+                  (nSerSize += ::SerReadWrite(s, (nUBuckets), nType, nVersion, ser_action));
+                  std::map<int, int> mapUnkIds;
+                  int nIds = 0;
+                  for (std::map<int, CAddrInfo>::iterator it = am->mapInfo.begin();            it != am->mapInfo.end();            it++)
+                  { 
+                     if (nIds == nNew) 
+                        break;
+                     mapUnkIds[(*it).first] = nIds;
+                     CAddrInfo &info = (*it).second;
+                     if (info.nRefCount) { (nSerSize += ::SerReadWrite(s, (info), nType, nVersion, ser_action));
+                     nIds++;
+                     }
+                  } 
+                  nIds = 0;
+                  for (std::map<int, CAddrInfo>::iterator it = am->mapInfo.begin();            it != am->mapInfo.end();            it++) 
+                  { 
+                     if (nIds == nTried) break;
+                     CAddrInfo &info = (*it).second;
+                     if (info.fInTried)
+                     { 
+                        (nSerSize += ::SerReadWrite(s, (info), nType, nVersion, ser_action));
                         nIds++;
-                    }
-                }
-                nIds = 0;
-                for (std::map<int, CAddrInfo>::iterator it = am->mapInfo.begin(); it != am->mapInfo.end(); it++)
-                {
-                    if (nIds == nTried) break; // this means nTried was wrong, oh ow
-                    CAddrInfo &info = (*it).second;
-                    if (info.fInTried)
-                    {
-                        READWRITE(info);
-                        nIds++;
-                    }
-                }
-                for (std::vector<std::set<int> >::iterator it = am->vvNew.begin(); it != am->vvNew.end(); it++)
-                {
-                    const std::set<int> &vNew = (*it);
-                    int nSize = vNew.size();
-                    READWRITE(nSize);
-                    for (std::set<int>::iterator it2 = vNew.begin(); it2 != vNew.end(); it2++)
-                    {
+                     }
+                  } 
+                  for (std::vector<std::set<int> >::iterator it = am->vvNew.begin();         it != am->vvNew.end();         it++) 
+                  { 
+                     const std::set<int> &vNew = (*it);
+                     int nSize = vNew.size();
+                     (nSerSize += ::SerReadWrite(s, (nSize), nType, nVersion, ser_action));
+                     for (std::set<int>::iterator it2 = vNew.begin();
+                        it2 != vNew.end();
+                        it2++)
+                     { 
                         int nIndex = mapUnkIds[*it2];
-                        READWRITE(nIndex);
-                    }
-                }
-            } else {
-                int nUBuckets = 0;
-                READWRITE(nUBuckets);
-                am->nIdCount = 0;
-                am->mapInfo.clear();
-                am->mapAddr.clear();
-                am->vRandom.clear();
-                am->vvTried = std::vector<std::vector<int> >(ADDRMAN_TRIED_BUCKET_COUNT, std::vector<int>(0));
-                am->vvNew = std::vector<std::set<int> >(ADDRMAN_NEW_BUCKET_COUNT, std::set<int>());
-                for (int n = 0; n < am->nNew; n++)
-                {
-                    CAddrInfo &info = am->mapInfo[n];
-                    READWRITE(info);
-                    am->mapAddr[info] = n;
-                    info.nRandomPos = vRandom.size();
-                    am->vRandom.push_back(n);
-                    if (nUBuckets != ADDRMAN_NEW_BUCKET_COUNT)
-                    {
+                        (nSerSize += ::SerReadWrite(s, (nIndex), nType, nVersion, ser_action));
+                     } 
+                  } 
+                  } 
+                  else
+                  { 
+                     int nUBuckets = 0;
+                     (nSerSize += ::SerReadWrite(s, (nUBuckets), nType, nVersion, ser_action));
+                     am->nIdCount = 0;
+                     am->mapInfo.clear();
+                     am->mapAddr.clear();
+                     am->vRandom.clear();
+                     am->vvTried = std::vector<std::vector<int> >(64, std::vector<int>(0));
+                     am->vvNew = std::vector<std::set<int> >(256, std::set<int>());
+                     for (int n = 0;               n < am->nNew;               n++) 
+                     {
+                        CAddrInfo &info = am->mapInfo[n];
+                        (nSerSize += ::SerReadWrite(s, (info), nType, nVersion, ser_action));
+                        am->mapAddr[info] = n;
+                        info.nRandomPos = vRandom.size();
+                        am->vRandom.push_back(n);
+                        if (nUBuckets != 256) { am->vvNew[info.GetNewBucket(am->nKey)].insert(n);
+                        info.nRefCount++;
+                        }
+                     } 
+                     am->nIdCount = am->nNew;
+                     int nLost = 0;
+                     for (int n = 0;               n < am->nTried;               n++)
+                     { 
+                        CAddrInfo info;
+                        (nSerSize += ::SerReadWrite(s, (info), nType, nVersion, ser_action));
+                        std::vector<int> &vTried = am->vvTried[info.GetTriedBucket(am->nKey)];
+                        if (vTried.size() < 64)
+                        { 
+                           info.nRandomPos = vRandom.size();
+                           info.fInTried = true;
+                           am->vRandom.push_back(am->nIdCount);
+                           am->mapInfo[am->nIdCount] = info;
+                           am->mapAddr[info] = am->nIdCount;
+                           vTried.push_back(am->nIdCount);
+                           am->nIdCount++;
+                        } 
+                        else { nLost++;
+                        }
+                     } 
+                     am->nTried -= nLost;
+                     for (int b = 0;            b < nUBuckets;            b++)
+                     { 
+                        std::set<int> &vNew = am->vvNew[b];
+                        int nSize = 0;
+                        (nSerSize += ::SerReadWrite(s, (nSize), nType, nVersion, ser_action));
+                        for (int n = 0;            n < nSize;            n++) 
+                        { 
+                           int nIndex = 0;
+                           (nSerSize += ::SerReadWrite(s, (nIndex), nType, nVersion, ser_action));
+                           CAddrInfo &info = am->mapInfo[nIndex];
+                           if (nUBuckets == 256 && info.nRefCount < 4)
+                           { 
+                              info.nRefCount++;
+                              vNew.insert(nIndex);
+                           }
+                        } 
+                     } 
+                  } 
+               } 
+            }
+         } 
+         return nSerSize;
+   } 
+   template<typename Stream> void Serialize(Stream& s, int nType, int nVersion) const 
+   { 
+      CSerActionSerialize ser_action;
+      const bool fGetSize = false;
+      const bool fWrite = true;
+      const bool fRead = false;
+      unsigned int nSerSize = 0;
+      {
+         { 
+            { 
+               CCriticalBlock criticalblock(cs, "cs", __FILE__, __LINE__);
+               unsigned char nVersion = 0;
+               (nSerSize += ::SerReadWrite(s, (nVersion), nType, nVersion, ser_action));
+               (nSerSize += ::SerReadWrite(s, (nKey), nType, nVersion, ser_action));
+               (nSerSize += ::SerReadWrite(s, (nNew), nType, nVersion, ser_action));
+               (nSerSize += ::SerReadWrite(s, (nTried), nType, nVersion, ser_action));
+               CAddrMan *am = const_cast<CAddrMan*>(this);
+               if (fWrite)
+               { 
+                  int nUBuckets = 256;
+                  (nSerSize += ::SerReadWrite(s, (nUBuckets), nType, nVersion, ser_action));
+                  std::map<int, int> mapUnkIds;
+                  int nIds = 0;
+                  for (std::map<int, CAddrInfo>::iterator it = am->mapInfo.begin();               it != am->mapInfo.end();               it++)
+                  { 
+                     if (nIds == nNew) break;
+                     mapUnkIds[(*it).first] = nIds;
+                     CAddrInfo &info = (*it).second;
+                     if (info.nRefCount)
+                     { 
+                        (nSerSize += ::SerReadWrite(s, (info), nType, nVersion, ser_action));
+                        nIds++;
+                     }
+                  } 
+                  nIds = 0;
+                  for (std::map<int, CAddrInfo>::iterator it = am->mapInfo.begin();               it != am->mapInfo.end();               it++) 
+                  {
+                     if (nIds == nTried) 
+                        break;
+                     CAddrInfo &info = (*it).second;
+                     if (info.fInTried)
+                     {
+                        (nSerSize += ::SerReadWrite(s, (info), nType, nVersion, ser_action));
+                        nIds++;
+                     }
+                  } 
+                  for (std::vector<std::set<int> >::iterator it = am->vvNew.begin();            it != am->vvNew.end();            it++)
+                  { 
+                     const std::set<int> &vNew = (*it);
+                     int nSize = vNew.size();
+                     (nSerSize += ::SerReadWrite(s, (nSize), nType, nVersion, ser_action));
+                     for (std::set<int>::iterator it2 = vNew.begin();               it2 != vNew.end();               it2++)
+                     { 
+                        int nIndex = mapUnkIds[*it2];
+                        (nSerSize += ::SerReadWrite(s, (nIndex), nType, nVersion, ser_action));
+                     }
+                  }
+               } 
+               else 
+               { 
+                  int nUBuckets = 0;
+                  (nSerSize += ::SerReadWrite(s, (nUBuckets), nType, nVersion, ser_action));
+                  am->nIdCount = 0;
+                  am->mapInfo.clear();
+                  am->mapAddr.clear();
+                  am->vRandom.clear();
+                  am->vvTried = std::vector<std::vector<int> >(64, std::vector<int>(0));
+                  am->vvNew = std::vector<std::set<int> >(256, std::set<int>());
+                  for (int n = 0;               n < am->nNew;               n++)
+                  { 
+                     CAddrInfo &info = am->mapInfo[n];
+                     (nSerSize += ::SerReadWrite(s, (info), nType, nVersion, ser_action));
+                     am->mapAddr[info] = n;
+                     info.nRandomPos = vRandom.size();
+                     am->vRandom.push_back(n);
+                     if (nUBuckets != 256)
+                     { 
                         am->vvNew[info.GetNewBucket(am->nKey)].insert(n);
                         info.nRefCount++;
-                    }
-                }
-                am->nIdCount = am->nNew;
-                int nLost = 0;
-                for (int n = 0; n < am->nTried; n++)
-                {
-                    CAddrInfo info;
-                    READWRITE(info);
-                    std::vector<int> &vTried = am->vvTried[info.GetTriedBucket(am->nKey)];
-                    if (vTried.size() < ADDRMAN_TRIED_BUCKET_SIZE)
-                    {
+                     }
+                  } 
+                  am->nIdCount = am->nNew;
+                  int nLost = 0;
+                  for (int n = 0;               n < am->nTried;               n++) 
+                  { 
+                     CAddrInfo info;
+                     (nSerSize += ::SerReadWrite(s, (info), nType, nVersion, ser_action));
+                     std::vector<int> &vTried = am->vvTried[info.GetTriedBucket(am->nKey)];
+                     if (vTried.size() < 64)
+                     { 
                         info.nRandomPos = vRandom.size();
                         info.fInTried = true;
                         am->vRandom.push_back(am->nIdCount);
@@ -354,31 +472,152 @@ public:
                         am->mapAddr[info] = am->nIdCount;
                         vTried.push_back(am->nIdCount);
                         am->nIdCount++;
-                    } else {
+                     }
+                     else
+                     { 
                         nLost++;
-                    }
-                }
-                am->nTried -= nLost;
-                for (int b = 0; b < nUBuckets; b++)
-                {
-                    std::set<int> &vNew = am->vvNew[b];
-                    int nSize = 0;
-                    READWRITE(nSize);
-                    for (int n = 0; n < nSize; n++)
-                    {
+                     }
+                  } 
+                  am->nTried -= nLost;
+                  for (int b = 0;               b < nUBuckets;               b++) 
+                  { 
+                     std::set<int> &vNew = am->vvNew[b];
+                     int nSize = 0;
+                     (nSerSize += ::SerReadWrite(s, (nSize), nType, nVersion, ser_action));
+                     for (int n = 0;               n < nSize;               n++) 
+                     { 
                         int nIndex = 0;
-                        READWRITE(nIndex);
+                        (nSerSize += ::SerReadWrite(s, (nIndex), nType, nVersion, ser_action));
                         CAddrInfo &info = am->mapInfo[nIndex];
-                        if (nUBuckets == ADDRMAN_NEW_BUCKET_COUNT && info.nRefCount < ADDRMAN_NEW_BUCKETS_PER_ADDRESS)
-                        {
-                            info.nRefCount++;
-                            vNew.insert(nIndex);
+                        if (nUBuckets == 256 && info.nRefCount < 4)
+                        { 
+                           info.nRefCount++;
+                           vNew.insert(nIndex);
                         }
-                    }
-                }
+                     } 
+                  } 
+               } 
             }
-        }
-    });)
+         }
+      }
+   } 
+
+   template<typename Stream> void Unserialize(Stream& s, int nType, int nVersion)
+   { 
+      CSerActionUnserialize ser_action;
+      const bool fGetSize = false;
+      const bool fWrite = false;
+      const bool fRead = true;
+      unsigned int nSerSize = 0;
+      {    
+         {
+            {
+               CCriticalBlock criticalblock(cs, "cs", __FILE__, __LINE__);
+               unsigned char nVersion = 0;
+               (nSerSize += ::SerReadWrite(s, (nVersion), nType, nVersion, ser_action));
+               (nSerSize += ::SerReadWrite(s, (nKey), nType, nVersion, ser_action));
+               (nSerSize += ::SerReadWrite(s, (nNew), nType, nVersion, ser_action));
+               (nSerSize += ::SerReadWrite(s, (nTried), nType, nVersion, ser_action));
+               CAddrMan *am = const_cast<CAddrMan*>(this);
+               if (fWrite)
+               { 
+                  int nUBuckets = 256;
+                  (nSerSize += ::SerReadWrite(s, (nUBuckets), nType, nVersion, ser_action));
+                  std::map<int, int> mapUnkIds;
+                  int nIds = 0;
+                  for (std::map<int, CAddrInfo>::iterator it = am->mapInfo.begin();                  it != am->mapInfo.end();                  it++) 
+                  { 
+                     if (nIds == nNew) 
+                        break;
+                     mapUnkIds[(*it).first] = nIds;
+                     CAddrInfo &info = (*it).second;
+                     if (info.nRefCount) { (nSerSize += ::SerReadWrite(s, (info), nType, nVersion, ser_action));
+                     nIds++;
+                     }
+                  } nIds = 0;
+                  for (std::map<int, CAddrInfo>::iterator it = am->mapInfo.begin();                     it != am->mapInfo.end();                     it++)
+                  { 
+                     if (nIds == nTried) break;
+                     CAddrInfo &info = (*it).second;
+                     if (info.fInTried) { (nSerSize += ::SerReadWrite(s, (info), nType, nVersion, ser_action));
+                     nIds++;
+                     }
+                  } 
+                  for (std::vector<std::set<int> >::iterator it = am->vvNew.begin();                  it != am->vvNew.end();                  it++)
+                  { 
+                     const std::set<int> &vNew = (*it);
+                     int nSize = vNew.size();
+                     (nSerSize += ::SerReadWrite(s, (nSize), nType, nVersion, ser_action));
+                     for (std::set<int>::iterator it2 = vNew.begin();                     it2 != vNew.end();                     it2++)
+                     { 
+                        int nIndex = mapUnkIds[*it2];
+                        (nSerSize += ::SerReadWrite(s, (nIndex), nType, nVersion, ser_action));
+                     }
+                  } 
+               } 
+               else
+               { 
+                  int nUBuckets = 0;
+                  (nSerSize += ::SerReadWrite(s, (nUBuckets), nType, nVersion, ser_action));
+                  am->nIdCount = 0;
+                  am->mapInfo.clear();
+                  am->mapAddr.clear();
+                  am->vRandom.clear();
+                  am->vvTried = std::vector<std::vector<int> >(64, std::vector<int>(0));
+                  am->vvNew = std::vector<std::set<int> >(256, std::set<int>());
+                  for (int n = 0;         n < am->nNew;         n++)
+                  { 
+                     CAddrInfo &info = am->mapInfo[n];
+                     (nSerSize += ::SerReadWrite(s, (info), nType, nVersion, ser_action));
+                     am->mapAddr[info] = n;
+                     info.nRandomPos = vRandom.size();
+                     am->vRandom.push_back(n);
+                     if (nUBuckets != 256) { am->vvNew[info.GetNewBucket(am->nKey)].insert(n);
+                     info.nRefCount++;
+                     } 
+                  } 
+                  am->nIdCount = am->nNew;
+                  int nLost = 0;
+                  for (int n = 0;         n < am->nTried;         n++)
+                  { 
+                     CAddrInfo info;
+                     (nSerSize += ::SerReadWrite(s, (info), nType, nVersion, ser_action));
+                     std::vector<int> &vTried = am->vvTried[info.GetTriedBucket(am->nKey)];
+                     if (vTried.size() < 64) { info.nRandomPos = vRandom.size();
+                     info.fInTried = true;
+                     am->vRandom.push_back(am->nIdCount);
+                     am->mapInfo[am->nIdCount] = info;
+                     am->mapAddr[info] = am->nIdCount;
+                     vTried.push_back(am->nIdCount);
+                     am->nIdCount++;
+                     } 
+                     else { nLost++;
+                     }
+                  } 
+                  am->nTried -= nLost;
+                  for (int b = 0;
+                     b < nUBuckets;
+                     b++) { std::set<int> &vNew = am->vvNew[b];
+                  int nSize = 0;
+                  (nSerSize += ::SerReadWrite(s, (nSize), nType, nVersion, ser_action));
+                  for (int n = 0;                     n < nSize;                     n++)
+                  { 
+                     int nIndex = 0;
+                     (nSerSize += ::SerReadWrite(s, (nIndex), nType, nVersion, ser_action));
+                     CAddrInfo &info = am->mapInfo[nIndex];
+                     if (nUBuckets == 256 && info.nRefCount < 4) 
+                     { 
+                        info.nRefCount++;
+                        vNew.insert(nIndex);
+                     } 
+                  }
+                  }
+               } 
+            }
+         }
+      }
+   }
+
 
     CAddrMan() : vRandom(0), vvTried(ADDRMAN_TRIED_BUCKET_COUNT, std::vector<int>(0)), vvNew(ADDRMAN_NEW_BUCKET_COUNT, std::set<int>())
     {

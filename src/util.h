@@ -15,7 +15,17 @@
 
 #include <cstdio>
 #include <exception>
+#ifndef _MSC_VER
 #include <inttypes.h>
+#else
+#define PRId64 "lld"
+#define PRIx64 "llx"
+#define PRIu64 "llu"
+#define PRIo64 "llo"
+
+typedef long long  int64;
+typedef unsigned long long  uint64;
+#endif
 #include <map>
 #include <stdarg.h>
 #include <stdint.h>

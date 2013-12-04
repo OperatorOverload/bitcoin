@@ -231,7 +231,11 @@ uint64_t ReadCompactSize(Stream& is)
         uint64_t xSize;
         READDATA(is, xSize);
         nSizeRet = xSize;
+#ifndef _MSC_VER
         if (nSizeRet < 0x100000000LLu)
+#else
+        if (nSizeRet < 0x100000000ui64)
+#endif
             throw std::ios_base::failure("non-canonical ReadCompactSize()");
     }
     if (nSizeRet > (uint64_t)MAX_SIZE)

@@ -333,8 +333,9 @@ string vstrprintf(const char *format, va_list ap)
     int ret;
     while (true)
     {
-        va_list arg_ptr;
-        va_copy(arg_ptr, ap);
+        //va_list arg_ptr;
+        //va_copy(arg_ptr, ap);
+        va_list arg_ptr = ap;
         ret = vsnprintf(p, limit, format, arg_ptr);
         va_end(arg_ptr);
         if (ret >= 0 && ret < limit)

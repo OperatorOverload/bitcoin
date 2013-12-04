@@ -9,25 +9,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mybitcoinqt", "mybitcoinqt\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FF475423-FFFE-FFD1-FF41-FF790D534E02}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		VS2012BuildRequirements.txt = VS2012BuildRequirements.txt
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs23
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = mybitcoin\\mybitcoin.vcxproj
-		SccProjectName1 = mybitcoin
-		SccLocalPath1 = mybitcoin
-		SccProjectUniqueName2 = leveldb\\leveldb.vcxproj
-		SccProjectName2 = leveldb
-		SccLocalPath2 = leveldb
-		SccProjectUniqueName3 = mybitcoinqt\\mybitcoinqt.vcxproj
-		SccProjectName3 = mybitcoinqt
-		SccLocalPath3 = mybitcoinqt
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Release|Win32 = Release|Win32

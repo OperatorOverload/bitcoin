@@ -18,7 +18,11 @@
 #include "util.h"
 
 #include <deque>
+#ifndef _MSC_VER
 #include <inttypes.h>
+#else
+#define PRId64 "lld"
+#endif
 #include <stdint.h>
 
 #ifndef WIN32

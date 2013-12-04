@@ -1,6 +1,14 @@
 *.tar.gz
 
 *.exe
+*.sdf
+*.opensdf
+*.pdb
+*.ilk
+*.suo
+Debug/*.*
+Release/*.*
+
 src/bitcoin
 src/bitcoind
 src/bitcoin-cli
@@ -82,3 +90,7 @@ qa/pull-tester/run-bitcoind-for-test.sh
 qa/pull-tester/build-tests.sh
 
 !src/leveldb-*/Makefile
+
+# SQL Server files
+*/App_Data/*.mdf
+*/App_Data/*.ldf

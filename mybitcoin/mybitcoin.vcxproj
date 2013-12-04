@@ -50,8 +50,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\bitcoindeps\openssl-1.0.1e\inc32;..\src\leveldb\helpers;..\src\leveldb\include;..\..\bitcoindeps\db-4.7.25.NC\build_windows;..\..\bitcoindeps\boost_1_55_0;..\..\bitcoindeps\boost_1_55_0\boost;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNICODE;WIN32;_SCL_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501;HAVE_WORKING_BOOST_SLEEP_FOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\bitcoindeps\openssl-1.0.1e\inc32;..\src\leveldb\helpers\memenv;..\src\leveldb\helpers;..\src\leveldb\include;..\..\bitcoindeps\db-4.7.25.NC\build_windows;..\..\bitcoindeps\boost_1_55_0;..\..\bitcoindeps\boost_1_55_0\boost;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -70,8 +70,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\bitcoindeps\openssl-1.0.1e\inc32;..\src\leveldb\helpers;..\src\leveldb\include;..\..\bitcoindeps\db-4.7.25.NC\build_windows;..\..\bitcoindeps\boost_1_55_0;..\..\bitcoindeps\boost_1_55_0\boost;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNICODE;WIN32;_SCL_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501;HAVE_WORKING_BOOST_SLEEP_FOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\bitcoindeps\openssl-1.0.1e\inc32;..\src\leveldb\helpers\memenv;..\src\leveldb\helpers;..\src\leveldb\include;..\..\bitcoindeps\db-4.7.25.NC\build_windows;..\..\bitcoindeps\boost_1_55_0;..\..\bitcoindeps\boost_1_55_0\boost;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -89,30 +89,39 @@
   <ItemGroup>
     <ClCompile Include="..\src\addrman.cpp" />
     <ClCompile Include="..\src\alert.cpp" />
-    <ClCompile Include="..\src\bitcoinrpc.cpp" />
+    <ClCompile Include="..\src\allocators.cpp" />
+    <ClCompile Include="..\src\bitcoind.cpp" />
     <ClCompile Include="..\src\bloom.cpp" />
+    <ClCompile Include="..\src\chainparams.cpp" />
     <ClCompile Include="..\src\checkpoints.cpp" />
+    <ClCompile Include="..\src\coins.cpp" />
+    <ClCompile Include="..\src\core.cpp" />
     <ClCompile Include="..\src\crypter.cpp" />
     <ClCompile Include="..\src\db.cpp" />
     <ClCompile Include="..\src\hash.cpp" />
     <ClCompile Include="..\src\init.cpp" />
     <ClCompile Include="..\src\key.cpp" />
     <ClCompile Include="..\src\keystore.cpp" />
-    <ClCompile Include="..\src\leveldb.cpp" />
+    <ClCompile Include="..\src\leveldbwrapper.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\miner.cpp" />
     <ClCompile Include="..\src\net.cpp" />
     <ClCompile Include="..\src\netbase.cpp" />
     <ClCompile Include="..\src\noui.cpp" />
     <ClCompile Include="..\src\protocol.cpp" />
     <ClCompile Include="..\src\rpcblockchain.cpp" />
+    <ClCompile Include="..\src\rpcclient.cpp" />
     <ClCompile Include="..\src\rpcdump.cpp" />
     <ClCompile Include="..\src\rpcmining.cpp" />
     <ClCompile Include="..\src\rpcnet.cpp" />
+    <ClCompile Include="..\src\rpcprotocol.cpp" />
     <ClCompile Include="..\src\rpcrawtransaction.cpp" />
+    <ClCompile Include="..\src\rpcserver.cpp" />
     <ClCompile Include="..\src\rpcwallet.cpp" />
     <ClCompile Include="..\src\script.cpp" />
     <ClCompile Include="..\src\sync.cpp" />
     <ClCompile Include="..\src\txdb.cpp" />
+    <ClCompile Include="..\src\txmempool.cpp" />
     <ClCompile Include="..\src\util.cpp" />
     <ClCompile Include="..\src\version.cpp" />
     <ClCompile Include="..\src\wallet.cpp" />
@@ -126,10 +135,14 @@
     <ClInclude Include="..\src\bignum.h" />
     <ClInclude Include="..\src\bitcoinrpc.h" />
     <ClInclude Include="..\src\bloom.h" />
+    <ClInclude Include="..\src\chainparams.h" />
     <ClInclude Include="..\src\checkpoints.h" />
     <ClInclude Include="..\src\checkqueue.h" />
     <ClInclude Include="..\src\clientversion.h" />
+    <ClInclude Include="..\src\coincontrol.h" />
+    <ClInclude Include="..\src\coins.h" />
     <ClInclude Include="..\src\compat.h" />
+    <ClInclude Include="..\src\core.h" />
     <ClInclude Include="..\src\crypter.h" />
     <ClInclude Include="..\src\db.h" />
     <ClInclude Include="..\src\hash.h" />
@@ -137,17 +150,24 @@
     <ClInclude Include="..\src\key.h" />
     <ClInclude Include="..\src\keystore.h" />
     <ClInclude Include="..\src\leveldb.h" />
+    <ClInclude Include="..\src\leveldbwrapper.h" />
     <ClInclude Include="..\src\limitedmap.h" />
     <ClInclude Include="..\src\main.h" />
+    <ClInclude Include="..\src\miner.h" />
     <ClInclude Include="..\src\mruset.h" />
     <ClInclude Include="..\src\net.h" />
     <ClInclude Include="..\src\netbase.h" />
+    <ClInclude Include="..\src\noui.h" />
     <ClInclude Include="..\src\protocol.h" />
+    <ClInclude Include="..\src\rpcclient.h" />
+    <ClInclude Include="..\src\rpcprotocol.h" />
+    <ClInclude Include="..\src\rpcserver.h" />
     <ClInclude Include="..\src\script.h" />
     <ClInclude Include="..\src\serialize.h" />
     <ClInclude Include="..\src\sync.h" />
     <ClInclude Include="..\src\threadsafety.h" />
     <ClInclude Include="..\src\txdb.h" />
+    <ClInclude Include="..\src\txmempool.h" />
     <ClInclude Include="..\src\uint256.h" />
     <ClInclude Include="..\src\ui_interface.h" />
     <ClInclude Include="..\src\util.h" />

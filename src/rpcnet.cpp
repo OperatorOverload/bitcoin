@@ -9,8 +9,6 @@
 #include "sync.h"
 #include "util.h"
 
-#include <inttypes.h>
-
 #include <boost/foreach.hpp>
 #include "json/json_spirit_value.h"
 

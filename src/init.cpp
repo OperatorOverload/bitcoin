@@ -20,7 +20,6 @@
 #include "wallet.h"
 #include "walletdb.h"
 
-#include <inttypes.h>
 #include <stdint.h>
 
 #ifndef WIN32
