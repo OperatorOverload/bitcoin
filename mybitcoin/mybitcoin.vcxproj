@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{00225DF0-9DDB-41A2-972B-56DC24E2C995}</ProjectGuid>
+    <ProjectName>mybitcoin</ProjectName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(ConfigurationName)</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(ConfigurationName)</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>UNICODE;WIN32;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\bitcoindeps\openssl-1.0.1e\inc32;..\src\leveldb\helpers;..\src\leveldb\include;..\..\bitcoindeps\db-4.7.25.NC\build_windows;..\..\bitcoindeps\boost_1_55_0;..\..\bitcoindeps\boost_1_55_0\boost;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <StringPooling>true</StringPooling>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>..\..\bitcoindeps\db-4.7.25.NC\build_windows\Debug;..\..\bitcoindeps\boost_1_55_0\stage\lib;..\..\bitcoindeps\openssl-1.0.1e\out32.dbg;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;shell32.lib;uuid.lib;ole32.lib;advapi32.lib;ws2_32.lib;gdi32.lib;comdlg32.lib;oleaut32.lib;imm32.lib;winmm.lib;winspool.lib;ssleay32.lib;libeay32.lib;libdb47sd.lib;Shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>UNICODE;WIN32;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\bitcoindeps\openssl-1.0.1e\inc32;..\src\leveldb\helpers;..\src\leveldb\include;..\..\bitcoindeps\db-4.7.25.NC\build_windows;..\..\bitcoindeps\boost_1_55_0;..\..\bitcoindeps\boost_1_55_0\boost;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>..\..\bitcoindeps\db-4.7.25.NC\build_windows\Release;..\..\bitcoindeps\boost_1_55_0\stage\lib;..\..\bitcoindeps\openssl-1.0.1e\out32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;shell32.lib;uuid.lib;ole32.lib;advapi32.lib;ws2_32.lib;gdi32.lib;comdlg32.lib;oleaut32.lib;imm32.lib;winmm.lib;winspool.lib;ssleay32.lib;libeay32.lib;libdb47s.lib;Shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\addrman.cpp" />
+    <ClCompile Include="..\src\alert.cpp" />
+    <ClCompile Include="..\src\bitcoinrpc.cpp" />
+    <ClCompile Include="..\src\bloom.cpp" />
+    <ClCompile Include="..\src\checkpoints.cpp" />
+    <ClCompile Include="..\src\crypter.cpp" />
+    <ClCompile Include="..\src\db.cpp" />
+    <ClCompile Include="..\src\hash.cpp" />
+    <ClCompile Include="..\src\init.cpp" />
+    <ClCompile Include="..\src\key.cpp" />
+    <ClCompile Include="..\src\keystore.cpp" />
+    <ClCompile Include="..\src\leveldb.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\net.cpp" />
+    <ClCompile Include="..\src\netbase.cpp" />
+    <ClCompile Include="..\src\noui.cpp" />
+    <ClCompile Include="..\src\protocol.cpp" />
+    <ClCompile Include="..\src\rpcblockchain.cpp" />
+    <ClCompile Include="..\src\rpcdump.cpp" />
+    <ClCompile Include="..\src\rpcmining.cpp" />
+    <ClCompile Include="..\src\rpcnet.cpp" />
+    <ClCompile Include="..\src\rpcrawtransaction.cpp" />
+    <ClCompile Include="..\src\rpcwallet.cpp" />
+    <ClCompile Include="..\src\script.cpp" />
+    <ClCompile Include="..\src\sync.cpp" />
+    <ClCompile Include="..\src\txdb.cpp" />
+    <ClCompile Include="..\src\util.cpp" />
+    <ClCompile Include="..\src\version.cpp" />
+    <ClCompile Include="..\src\wallet.cpp" />
+    <ClCompile Include="..\src\walletdb.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\addrman.h" />
+    <ClInclude Include="..\src\alert.h" />
+    <ClInclude Include="..\src\allocators.h" />
+    <ClInclude Include="..\src\base58.h" />
+    <ClInclude Include="..\src\bignum.h" />
+    <ClInclude Include="..\src\bitcoinrpc.h" />
+    <ClInclude Include="..\src\bloom.h" />
+    <ClInclude Include="..\src\checkpoints.h" />
+    <ClInclude Include="..\src\checkqueue.h" />
+    <ClInclude Include="..\src\clientversion.h" />
+    <ClInclude Include="..\src\compat.h" />
+    <ClInclude Include="..\src\crypter.h" />
+    <ClInclude Include="..\src\db.h" />
+    <ClInclude Include="..\src\hash.h" />
+    <ClInclude Include="..\src\init.h" />
+    <ClInclude Include="..\src\key.h" />
+    <ClInclude Include="..\src\keystore.h" />
+    <ClInclude Include="..\src\leveldb.h" />
+    <ClInclude Include="..\src\limitedmap.h" />
+    <ClInclude Include="..\src\main.h" />
+    <ClInclude Include="..\src\mruset.h" />
+    <ClInclude Include="..\src\net.h" />
+    <ClInclude Include="..\src\netbase.h" />
+    <ClInclude Include="..\src\protocol.h" />
+    <ClInclude Include="..\src\script.h" />
+    <ClInclude Include="..\src\serialize.h" />
+    <ClInclude Include="..\src\sync.h" />
+    <ClInclude Include="..\src\threadsafety.h" />
+    <ClInclude Include="..\src\txdb.h" />
+    <ClInclude Include="..\src\uint256.h" />
+    <ClInclude Include="..\src\ui_interface.h" />
+    <ClInclude Include="..\src\util.h" />
+    <ClInclude Include="..\src\version.h" />
+    <ClInclude Include="..\src\wallet.h" />
+    <ClInclude Include="..\src\walletdb.h" />
+    <ClInclude Include="..\src\inttypes.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\leveldb\leveldb.vcxproj">
+      <Project>{002cc16a-b4ef-4737-b751-dad3a8d14133}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties UicDir=".\GeneratedFiles" MocDir=".\GeneratedFiles\$(ConfigurationName)" MocOptions="" RccDir=".\GeneratedFiles" lupdateOnBuild="1" QtVersion_x0020_Win32="vRoom32" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
