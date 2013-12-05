@@ -172,12 +172,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_optionsmodel.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_overviewpage.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_overviewpage.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_paymentserver.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -424,6 +418,21 @@
     <ClCompile Include="..\src\qt\walletview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\qt\paymentrequest.pb.cc">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\qt\rpcconsole.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_overviewpage.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_overviewpage.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\qt\overviewpage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\qt\forms\aboutdialog.ui">
@@ -540,9 +549,6 @@
     <CustomBuild Include="..\src\qt\optionsmodel.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\src\qt\overviewpage.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="..\src\qt\paymentserver.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -603,20 +609,17 @@
     <CustomBuild Include="..\src\qt\bitcoin.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="..\src\qt\overviewpage.cpp">
-      <Filter>Source Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="GeneratedFiles\Debug\overviewpage.moc">
-      <Filter>Generated Files\Debug</Filter>
-    </CustomBuild>
-    <CustomBuild Include="..\src\qt\rpcconsole.cpp">
-      <Filter>Source Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="GeneratedFiles\Debug\rpcconsole.moc">
       <Filter>Generated Files\Debug</Filter>
     </CustomBuild>
     <CustomBuild Include="GeneratedFiles\Debug\intro.moc">
       <Filter>Generated Files\Debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\paymentrequest.proto">
+      <Filter>Source Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\overviewpage.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
