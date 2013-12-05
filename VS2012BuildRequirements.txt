@@ -1,0 +1,117 @@
+
+Please read over this whole document before trying anything :)
+
+Edit( 12/2/2013)  I modified some header files that were giving MSVC fits during debug runtime so
+I could bring back the _ITERATOR_DEBUG_LEVEL define.  It adds more validation and it found some
+code in script.h that was out of bounds array stuff, but it didn't seem to be causing a problem
+and I had to code around it to leave the extra checking in place without causing an assert in the runtime 
+MSVC STL.
+
+I also changed the projects to be multi-processor so they would build faster on my machine.  It's
+way faster now!!!  Lastly, I modified the locations of QT, openssl, boost, and berkely db to all 
+be up 2 and over in a directory called BitcoinDeps.
+
+Just look at the include paths in the projects and you should get the idea.
+
+This source is branched from latest Bitcoin source on December 4th, 2013.
+
+
+The instructions below tell you how to build them all.
+
+*********************************
+
+http://softlayer-dal.dl.sourceforge.net/project/boost/boost/1.55.0/boost_1_55_0.zip
+
+Boost should be installed to c:\bitcoindeps\boost_1_55_0-vc11
+
+To build in a dos window (use the dos window shortcut in VS2012 tools program folder)
+
+bootstrap
+
+b2 -a link=static runtime-link=static cxxflags="-Zc:wchar_t- 
+
+
+**********************************
+
+http://download.oracle.com/berkeley-db/db-4.7.25.NC.tar.gz
+
+Berkeley DB should be installed to c:\bitcoindeps\db-4.7.25.NC
+
+To build it, open up the project file with VS2012 and modify the settings after going through a conversion.
+
+Project: C:\bitcoindeps\db-4.7.25.NC\build_windows\db_static.dsp with VS2012!!!
+
+you will need to convert the solution to VS2012
+
+Modify the build options for project: db_static:
+
+1. /MTd for debug and /MT for release for x86 configuration
+
+3. Build db_static project for release x86 and debug x86 only (ignore other configs)
+
+*************************************
+
+http://www.openssl.org/source/openssl-1.0.1e.tar.gz
+OpenSSL should be installed to c:\bitcoindeps\openssl-1.0.1e
+
+--should be built for 32 bit static libs
+
+Here is my bat file for building:
+
+@ECHO ON
+
+SET OLDPATH=%PATH%
+
+call "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\vcvars32.bat"
+
+call perl Configure VC-WIN32 --prefix=c:\bitcoindeps\openssl-1.0.1e
+
+call ms\do_nasm
+
+nmake -f ms\nt.mak clean
+
+nmake -f ms\nt.mak 
+
+call perl Configure debug-VC-WIN32 --prefix=c:\bitcoindeps\openssl-1.0.1e
+
+call ms\do_nasm
+
+nmake -f ms\nt.mak clean
+
+nmake -f ms\nt.mak 
+
+set PATH=%OLDPATH%
+
+***************************************************
+
+QT is a royal pain
+
+http://download.qt-project.org/official_releases/qt/5.1/5.1.1/single/qt-everywhere-opensource-src-5.1.1.7z
+
+QT5 should be here:  C:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\
+
+
+//now to build this monster:
+
+edit this:  C:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\mkspecs\win32-msvc2012\qmake.conf
+
+Modify lines in above file like this:
+
+QMAKE_CFLAGS_DEBUG      = -Zi -MTd 
+QMAKE_CFLAGS_RELEASE    = -O2 -MT
+
+---------------
+make sure you have everything installed that you need, like perl and python, see this page for more info:
+
+http://qt-project.org/wiki/Building-Qt-5-from-Git
+
+cd C:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\
+
+configure -debug-and-release -openssl-linked -opensource -confirm-license -platform win32-msvc2012 -nomake examples -nomake tests -static -I \bitcoindeps\openssl-1.0.1e\inc32 -L \bitcoindeps\openssl-1.0.1e\out32.dbg -L \bitcoindeps\openssl-1.0.1e\out32 -l gdi32 -no-opengl -qt-zlib -qt-libpng -qt-libjpeg
+
+nmake
+
+If you mess up and need to run configure again, you're screwed--the only way I have found is to 
+copy over a fresh copy of the qt directory and start over--don't forget to edit the qmake.conf again!
+
+If the nmake aborts, you still may have everything you need to build the qt bitcoin app.  Try it.
