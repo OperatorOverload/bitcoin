@@ -424,9 +424,6 @@
     <ClCompile Include="..\src\qt\walletview.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\init.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\qt\forms\aboutdialog.ui">
