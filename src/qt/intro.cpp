@@ -26,29 +26,8 @@ static const uint64_t BLOCK_CHAIN_SIZE = 10LL * GB_BYTES;
    still entering the path, and that always the most recently entered path is checked as
    soon as the thread becomes available.
 */
-class FreespaceChecker : public QObject
-{
-    Q_OBJECT
 
-public:
-    FreespaceChecker(Intro *intro);
-
-    enum Status {
-        ST_OK,
-        ST_ERROR
-    };
-
-public slots:
-    void check();
-
-signals:
-    void reply(int status, const QString &message, quint64 available);
-
-private:
-    Intro *intro;
-};
-
-#include "intro.moc"
+//#include "intro.moc"
 
 FreespaceChecker::FreespaceChecker(Intro *intro)
 {

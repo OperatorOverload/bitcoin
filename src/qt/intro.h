@@ -70,4 +70,27 @@ private:
     friend class FreespaceChecker;
 };
 
+class FreespaceChecker : public QObject
+{
+    Q_OBJECT
+
+public:
+    FreespaceChecker(Intro *intro);
+
+    enum Status {
+        ST_OK,
+        ST_ERROR
+    };
+
+public slots:
+    void check();
+
+signals:
+    void reply(int status, const QString &message, quint64 available);
+
+private:
+    Intro *intro;
+};
+
+
 #endif // INTRO_H
