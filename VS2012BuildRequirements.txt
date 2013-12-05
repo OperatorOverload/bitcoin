@@ -31,6 +31,10 @@ have a BitcoinDeps folder that looks like this:
 12/04/2013  06:54 PM    <DIR>          qt-everywhere-opensource-src-5.1.1
 12/03/2012  07:18 AM               706 readme.txt
 
+Also, you do NOT need the QT VS plugin to build and run the QT project--but you do need to set
+the QTDIR env variable *prior* to started VS2012:
+
+set QTDIR=C:\BitcoinDeps\qt-everywhere-opensource-src-5.1.1\qtbase
 
 **************************************
 http://protobuf.googlecode.com/files/protobuf-2.5.0.zip
