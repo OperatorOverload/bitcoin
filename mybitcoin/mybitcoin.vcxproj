@@ -12,7 +12,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{00225DF0-9DDB-41A2-972B-56DC24E2C995}</ProjectGuid>
-    <ProjectName>mybitcoin</ProjectName>
+    <ProjectName>bitcoind</ProjectName>
     <SccProjectName>SAK</SccProjectName>
     <SccAuxPath>SAK</SccAuxPath>
     <SccLocalPath>SAK</SccLocalPath>
@@ -59,12 +59,13 @@
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <StringPooling>true</StringPooling>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <AdditionalLibraryDirectories>..\..\bitcoindeps\db-4.7.25.NC\build_windows\Debug;..\..\bitcoindeps\boost_1_55_0\stage\lib;..\..\bitcoindeps\openssl-1.0.1e\out32.dbg;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;shell32.lib;uuid.lib;ole32.lib;advapi32.lib;ws2_32.lib;gdi32.lib;comdlg32.lib;oleaut32.lib;imm32.lib;winmm.lib;winspool.lib;ssleay32.lib;libeay32.lib;libdb47sd.lib;Shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>kernel32.lib;user32.lib;shell32.lib;uuid.lib;ole32.lib;advapi32.lib;ws2_32.lib;gdi32.lib;comdlg32.lib;oleaut32.lib;imm32.lib;winmm.lib;winspool.lib;ssleay32.lib;libeay32.lib;libdb47sd.lib;Shlwapi.lib;libboost_thread-vc110-mt-sgd-1_55.lib;libboost_filesystem-vc110-mt-sgd-1_55.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -87,98 +88,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\addrman.cpp" />
-    <ClCompile Include="..\src\alert.cpp" />
-    <ClCompile Include="..\src\allocators.cpp" />
     <ClCompile Include="..\src\bitcoind.cpp" />
-    <ClCompile Include="..\src\bloom.cpp" />
-    <ClCompile Include="..\src\chainparams.cpp" />
-    <ClCompile Include="..\src\checkpoints.cpp" />
-    <ClCompile Include="..\src\coins.cpp" />
-    <ClCompile Include="..\src\core.cpp" />
-    <ClCompile Include="..\src\crypter.cpp" />
-    <ClCompile Include="..\src\db.cpp" />
-    <ClCompile Include="..\src\hash.cpp" />
-    <ClCompile Include="..\src\init.cpp" />
-    <ClCompile Include="..\src\key.cpp" />
-    <ClCompile Include="..\src\keystore.cpp" />
-    <ClCompile Include="..\src\leveldbwrapper.cpp" />
-    <ClCompile Include="..\src\main.cpp" />
-    <ClCompile Include="..\src\miner.cpp" />
-    <ClCompile Include="..\src\net.cpp" />
-    <ClCompile Include="..\src\netbase.cpp" />
-    <ClCompile Include="..\src\noui.cpp" />
-    <ClCompile Include="..\src\protocol.cpp" />
-    <ClCompile Include="..\src\rpcblockchain.cpp" />
-    <ClCompile Include="..\src\rpcclient.cpp" />
-    <ClCompile Include="..\src\rpcdump.cpp" />
-    <ClCompile Include="..\src\rpcmining.cpp" />
-    <ClCompile Include="..\src\rpcnet.cpp" />
-    <ClCompile Include="..\src\rpcprotocol.cpp" />
-    <ClCompile Include="..\src\rpcrawtransaction.cpp" />
-    <ClCompile Include="..\src\rpcserver.cpp" />
-    <ClCompile Include="..\src\rpcwallet.cpp" />
-    <ClCompile Include="..\src\script.cpp" />
-    <ClCompile Include="..\src\sync.cpp" />
-    <ClCompile Include="..\src\txdb.cpp" />
-    <ClCompile Include="..\src\txmempool.cpp" />
-    <ClCompile Include="..\src\util.cpp" />
-    <ClCompile Include="..\src\version.cpp" />
-    <ClCompile Include="..\src\wallet.cpp" />
-    <ClCompile Include="..\src\walletdb.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\src\addrman.h" />
-    <ClInclude Include="..\src\alert.h" />
-    <ClInclude Include="..\src\allocators.h" />
-    <ClInclude Include="..\src\base58.h" />
-    <ClInclude Include="..\src\bignum.h" />
-    <ClInclude Include="..\src\bitcoinrpc.h" />
-    <ClInclude Include="..\src\bloom.h" />
-    <ClInclude Include="..\src\chainparams.h" />
-    <ClInclude Include="..\src\checkpoints.h" />
-    <ClInclude Include="..\src\checkqueue.h" />
-    <ClInclude Include="..\src\clientversion.h" />
-    <ClInclude Include="..\src\coincontrol.h" />
-    <ClInclude Include="..\src\coins.h" />
-    <ClInclude Include="..\src\compat.h" />
-    <ClInclude Include="..\src\core.h" />
-    <ClInclude Include="..\src\crypter.h" />
-    <ClInclude Include="..\src\db.h" />
-    <ClInclude Include="..\src\hash.h" />
-    <ClInclude Include="..\src\init.h" />
-    <ClInclude Include="..\src\key.h" />
-    <ClInclude Include="..\src\keystore.h" />
-    <ClInclude Include="..\src\leveldb.h" />
-    <ClInclude Include="..\src\leveldbwrapper.h" />
-    <ClInclude Include="..\src\limitedmap.h" />
-    <ClInclude Include="..\src\main.h" />
-    <ClInclude Include="..\src\miner.h" />
-    <ClInclude Include="..\src\mruset.h" />
-    <ClInclude Include="..\src\net.h" />
-    <ClInclude Include="..\src\netbase.h" />
-    <ClInclude Include="..\src\noui.h" />
-    <ClInclude Include="..\src\protocol.h" />
-    <ClInclude Include="..\src\rpcclient.h" />
-    <ClInclude Include="..\src\rpcprotocol.h" />
-    <ClInclude Include="..\src\rpcserver.h" />
-    <ClInclude Include="..\src\script.h" />
-    <ClInclude Include="..\src\serialize.h" />
-    <ClInclude Include="..\src\sync.h" />
-    <ClInclude Include="..\src\threadsafety.h" />
-    <ClInclude Include="..\src\txdb.h" />
-    <ClInclude Include="..\src\txmempool.h" />
-    <ClInclude Include="..\src\uint256.h" />
-    <ClInclude Include="..\src\ui_interface.h" />
-    <ClInclude Include="..\src\util.h" />
-    <ClInclude Include="..\src\version.h" />
-    <ClInclude Include="..\src\wallet.h" />
-    <ClInclude Include="..\src\walletdb.h" />
-    <ClInclude Include="..\src\inttypes.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\leveldb\leveldb.vcxproj">
       <Project>{002cc16a-b4ef-4737-b751-dad3a8d14133}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libcli\libcli.vcxproj">
+      <Project>{947d1ed4-e28e-459b-be23-4582490000bf}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libcommon\libcommon.vcxproj">
+      <Project>{3703b138-b8da-460e-9dd1-41bdc7588e80}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libserver\libserver.vcxproj">
+      <Project>{ff0566a3-1931-4b7b-bf46-645e5078d5bc}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

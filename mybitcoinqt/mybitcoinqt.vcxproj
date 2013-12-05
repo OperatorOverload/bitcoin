@@ -48,8 +48,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>UNICODE;WIN32;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;QT_GUI;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\bitcoindeps\openssl-1.0.1e\inc32;..\src\leveldb\helpers;..\src\leveldb\include;..\..\bitcoindeps\db-4.7.25.NC\build_windows;..\..\bitcoindeps\boost_1_55_0;..\..\bitcoindeps\boost_1_55_0\boost;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);.\;%(AdditionalIncludeDirectories);..\src\qt\forms;..\src;.;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>UNICODE;WIN32;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;_WIN32_WINNT=0x0501;HAVE_WORKING_BOOST_SLEEP_FOR;QT_GUI;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\BitcoinDeps\protobuf-2.5.0\src;..\..\bitcoindeps\openssl-1.0.1e\inc32;..\src\leveldb\helpers;..\src\leveldb\include;..\..\bitcoindeps\db-4.7.25.NC\build_windows;..\..\bitcoindeps\boost_1_55_0;..\..\bitcoindeps\boost_1_55_0\boost;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);.\;%(AdditionalIncludeDirectories);..\src\qt\forms;..\src;.;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -66,7 +66,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>QT_GUI;UNICODE;WIN32;WIN64;QT_NO_DEBUG;_SCL_SECURE_NO_WARNINGS;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WIN32_WINNT=0x0501;QT_GUI;UNICODE;WIN32;WIN64;QT_NO_DEBUG;_SCL_SECURE_NO_WARNINGS;QT_CORE_LIB;QT_GUI_LIB;QT_WIDGETS_LIB;HAVE_WORKING_BOOST_SLEEP_FOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\bitcoindeps\openssl-1.0.1e\inc32;..\src\leveldb\helpers;..\src\leveldb\include;..\..\bitcoindeps\db-4.7.25.NC\build_windows;..\..\bitcoindeps\boost_1_55_0;..\..\bitcoindeps\boost_1_55_0\boost;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);.\;%(AdditionalIncludeDirectories);..\src\qt\forms;..\src;.;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork;..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -85,7 +85,6 @@
   <ItemGroup>
     <ClCompile Include="..\src\addrman.cpp" />
     <ClCompile Include="..\src\alert.cpp" />
-    <ClCompile Include="..\src\bitcoinrpc.cpp" />
     <ClCompile Include="..\src\bloom.cpp" />
     <ClCompile Include="..\src\checkpoints.cpp" />
     <ClCompile Include="..\src\crypter.cpp" />
@@ -94,7 +93,6 @@
     <ClCompile Include="..\src\init.cpp" />
     <ClCompile Include="..\src\key.cpp" />
     <ClCompile Include="..\src\keystore.cpp" />
-    <ClCompile Include="..\src\leveldb.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\net.cpp" />
     <ClCompile Include="..\src\netbase.cpp" />
@@ -111,22 +109,30 @@
     <ClCompile Include="..\src\qt\bitcoinstrings.cpp" />
     <ClCompile Include="..\src\qt\bitcoinunits.cpp" />
     <ClCompile Include="..\src\qt\clientmodel.cpp" />
+    <ClCompile Include="..\src\qt\coincontroldialog.cpp" />
+    <ClCompile Include="..\src\qt\coincontroltreewidget.cpp" />
     <ClCompile Include="..\src\qt\csvmodelwriter.cpp" />
     <ClCompile Include="..\src\qt\editaddressdialog.cpp" />
     <ClCompile Include="..\src\qt\guiutil.cpp" />
+    <ClCompile Include="..\src\qt\intro.cpp" />
     <ClCompile Include="..\src\qt\monitoreddatamapper.cpp" />
     <ClCompile Include="..\src\qt\notificator.cpp" />
+    <ClCompile Include="..\src\qt\openuridialog.cpp" />
     <ClCompile Include="..\src\qt\optionsdialog.cpp" />
     <ClCompile Include="..\src\qt\optionsmodel.cpp" />
+    <ClCompile Include="..\src\qt\paymentrequest.pb.cc" />
+    <ClCompile Include="..\src\qt\paymentrequestplus.cpp" />
     <ClCompile Include="..\src\qt\paymentserver.cpp" />
-    <ClCompile Include="..\src\qt\qrcodedialog.cpp" />
     <ClCompile Include="..\src\qt\qvalidatedlineedit.cpp" />
     <ClCompile Include="..\src\qt\qvaluecombobox.cpp" />
+    <ClCompile Include="..\src\qt\receivecoinsdialog.cpp" />
+    <ClCompile Include="..\src\qt\receiverequestdialog.cpp" />
     <ClCompile Include="..\src\qt\rpcconsole.cpp" />
     <ClCompile Include="..\src\qt\sendcoinsdialog.cpp" />
     <ClCompile Include="..\src\qt\sendcoinsentry.cpp" />
     <ClCompile Include="..\src\qt\signverifymessagedialog.cpp" />
     <ClCompile Include="..\src\qt\splashscreen.cpp" />
+    <ClCompile Include="..\src\qt\trafficgraphwidget.cpp" />
     <ClCompile Include="..\src\qt\transactiondesc.cpp" />
     <ClCompile Include="..\src\qt\transactiondescdialog.cpp" />
     <ClCompile Include="..\src\qt\transactionfilterproxy.cpp" />
@@ -135,7 +141,7 @@
     <ClCompile Include="..\src\qt\transactionview.cpp" />
     <ClCompile Include="..\src\qt\walletframe.cpp" />
     <ClCompile Include="..\src\qt\walletmodel.cpp" />
-    <ClCompile Include="..\src\qt\walletstack.cpp" />
+    <ClCompile Include="..\src\qt\walletmodeltransaction.cpp" />
     <ClCompile Include="..\src\qt\walletview.cpp" />
     <ClCompile Include="..\src\rpcblockchain.cpp" />
     <ClCompile Include="..\src\rpcdump.cpp" />
@@ -402,12 +408,14 @@
     <ClInclude Include="..\src\netbase.h" />
     <ClInclude Include="..\src\protocol.h" />
     <ClInclude Include="..\src\qt\guiconstants.h" />
+    <CustomBuild Include="..\src\qt\intro.h" />
+    <ClInclude Include="..\src\qt\paymentrequest.pb.h" />
     <ClInclude Include="..\src\qt\transactionrecord.h" />
     <CustomBuild Include="..\src\qt\walletview.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing walletview.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI  "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI  "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing walletview.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -417,7 +425,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing walletmodel.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI  "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI  "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing walletmodel.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -427,7 +435,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing walletframe.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI  "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI  "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing walletframe.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -437,7 +445,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing transactionview.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI  "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI  "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing transactionview.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -447,7 +455,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing transactionfilterproxy.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI  "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI  "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing transactionfilterproxy.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -457,7 +465,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing transactiondescdialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing transactiondescdialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -467,7 +475,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing transactiondesc.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing transactiondesc.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -477,7 +485,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing splashscreen.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing splashscreen.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -487,7 +495,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing sendcoinsentry.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing sendcoinsentry.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -497,7 +505,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing rpcconsole.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing rpcconsole.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -507,7 +515,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing qvaluecombobox.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing qvaluecombobox.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -517,7 +525,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing qvalidatedlineedit.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing qvalidatedlineedit.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -527,7 +535,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing paymentserver.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing paymentserver.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -537,7 +545,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing overviewpage.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing overviewpage.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -547,7 +555,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing optionsmodel.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing optionsmodel.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -557,7 +565,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing notificator.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing notificator.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -567,7 +575,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing monitoreddatamapper.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing monitoreddatamapper.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -577,7 +585,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing guiutil.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing guiutil.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -587,7 +595,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing csvmodelwriter.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing csvmodelwriter.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -597,7 +605,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing clientmodel.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing clientmodel.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -607,7 +615,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing bitcoinunits.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing bitcoinunits.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -617,7 +625,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing bitcoinamountfield.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing bitcoinamountfield.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -627,7 +635,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing askpassphrasedialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing askpassphrasedialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -648,7 +656,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing optionsdialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing optionsdialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -658,7 +666,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing signverifymessagedialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing signverifymessagedialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -668,7 +676,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing editaddressdialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing editaddressdialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -678,7 +686,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing bitcoinaddressvalidator.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing bitcoinaddressvalidator.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -688,7 +696,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing aboutdialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing aboutdialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -698,7 +706,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing sendcoinsdialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing sendcoinsdialog.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -708,7 +716,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing transactiontablemodel.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing transactiontablemodel.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -718,7 +726,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing addresstablemodel.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing addresstablemodel.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -728,7 +736,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing addressbookpage.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing addressbookpage.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -750,7 +758,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing bitcoingui.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB -D_ITERATOR_DEBUG_LEVEL=0 -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DUNICODE -DWIN32 -DQT_CORE_LIB -DQT_GUI_LIB  -DQT_WIDGETS_LIB -D_SCL_SECURE_NO_WARNINGS -DQT_GUI   "-I..\..\openssl-1.0.1e-vc11\inc32" "-I.\..\src\leveldb\helpers" "-I.\..\src\leveldb\include" "-I..\..\db-4.7.25.NC\build_windows" "-I..\..\boost_1_55_0-vc11" "-I..\..\boost_1_55_0-vc11\boost" "-I.\GeneratedFiles" "-I.\GeneratedFiles\$(ConfigurationName)\." "-I." "-I$(INHERIT)\." "-I.\..\src\qt\forms" "-I.\..\src" "-I." "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtCore" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtGui" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtNetwork" "-I..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\include\QtWidgets"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing bitcoingui.h...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
@@ -822,18 +830,6 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\src\qt\forms\overviewpage.ui">
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="..\src\qt\forms\qrcodedialog.ui">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
@@ -1096,6 +1092,653 @@
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Rcc%27ing %(Identity)...</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\qrc_%(Filename).cpp;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\rcc.exe" -name "%(Filename)" -no-compress "%(FullPath)" -o .\GeneratedFiles\qrc_%(Filename).cpp</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_ach.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_af_ZA.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_ar.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_be_BY.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_bg.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_bs.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_ca.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_ca_ES.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_cs.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_cy.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_da.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_de.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_de_AT.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_el_GR.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_en.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_eo.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_es.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_es_CL.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_et.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_eu_ES.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_fa.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_fa_IR.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_fi.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_fr.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_fr_CA.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_gl.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_gu_IN.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_he.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_hi_IN.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_hr.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_hu.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_id_ID.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_it.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_ja.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_kk_KZ.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_ko_KR.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_la.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_lt.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_lv_LV.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_ms_MY.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_nb.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_nl.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_pl.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_pt_BR.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_pt_PT.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_ro_RO.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_ru.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_sk.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_sl_SI.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_sq.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_sr.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_sv.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_th_TH.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_tr.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_uk.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_vi.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_vi_VN.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_zh_CN.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\locale\bitcoin_zh_TW.ts">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"c:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\lrelease.exe"  %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).qm;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </AdditionalInputs>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\forms\coincontroldialog.ui">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\forms\intro.ui">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\forms\openuridialog.ui">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\forms\receivecoinsdialog.ui">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\forms\receiverequestdialog.ui">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Uic%27ing %(Identity)...</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\ui_%(Filename).h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"..\..\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\bin\uic.exe" -o ".\GeneratedFiles\ui_%(Filename).h" "%(FullPath)"</Command>
+    </CustomBuild>
+    <CustomBuild Include="..\src\qt\paymentrequest.proto">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bitcoindeps\protoc.exe  --proto_path=%(RootDir)%(Directory) --cpp_out=%(RelativeDir) %(FullPath)</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename).pb.cpp;%(Filename).pb.h;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">protoc'ing %(FullPath)</Message>
     </CustomBuild>
     <None Include="..\src\qt\res\icons\bitcoin.icns" />
     <None Include="..\src\qt\res\movies\update_spinner.mng">

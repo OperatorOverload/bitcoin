@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\addrman.cpp" />
+    <ClCompile Include="..\src\alert.cpp" />
+    <ClCompile Include="..\src\bloom.cpp" />
+    <ClCompile Include="..\src\chainparams.cpp" />
+    <ClCompile Include="..\src\checkpoints.cpp" />
+    <ClCompile Include="..\src\coins.cpp" />
+    <ClCompile Include="..\src\crypter.cpp" />
+    <ClCompile Include="..\src\db.cpp" />
+    <ClCompile Include="..\src\init.cpp" />
+    <ClCompile Include="..\src\keystore.cpp" />
+    <ClCompile Include="..\src\leveldbwrapper.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\miner.cpp" />
+    <ClCompile Include="..\src\net.cpp" />
+    <ClCompile Include="..\src\noui.cpp" />
+    <ClCompile Include="..\src\rpcblockchain.cpp" />
+    <ClCompile Include="..\src\rpcdump.cpp" />
+    <ClCompile Include="..\src\rpcmining.cpp" />
+    <ClCompile Include="..\src\rpcnet.cpp" />
+    <ClCompile Include="..\src\rpcrawtransaction.cpp" />
+    <ClCompile Include="..\src\rpcserver.cpp" />
+    <ClCompile Include="..\src\rpcwallet.cpp" />
+    <ClCompile Include="..\src\txdb.cpp" />
+    <ClCompile Include="..\src\txmempool.cpp" />
+    <ClCompile Include="..\src\wallet.cpp" />
+    <ClCompile Include="..\src\walletdb.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\bloom.h" />
+    <ClInclude Include="..\src\chainparams.h" />
+    <ClInclude Include="..\src\checkpoints.h" />
+    <ClInclude Include="..\src\coins.h" />
+    <ClInclude Include="..\src\crypter.h" />
+    <ClInclude Include="..\src\db.h" />
+    <ClInclude Include="..\src\init.h" />
+    <ClInclude Include="..\src\keystore.h" />
+    <ClInclude Include="..\src\leveldbwrapper.h" />
+    <ClInclude Include="..\src\main.h" />
+    <ClInclude Include="..\src\miner.h" />
+    <ClInclude Include="..\src\net.h" />
+    <ClInclude Include="..\src\noui.h" />
+    <ClInclude Include="..\src\rpcserver.h" />
+    <ClInclude Include="..\src\txdb.h" />
+    <ClInclude Include="..\src\txmempool.h" />
+    <ClInclude Include="..\src\wallet.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FF0566A3-1931-4B7B-BF46-645E5078D5BC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>libserver</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level1</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;UNICODE;WIN32;_SCL_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0501;HAVE_WORKING_BOOST_SLEEP_FOR;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\bitcoindeps\openssl-1.0.1e\inc32;..\src\leveldb\helpers\memenv;..\src\leveldb\helpers;..\src\leveldb\include;..\..\bitcoindeps\db-4.7.25.NC\build_windows;..\..\bitcoindeps\boost_1_55_0;..\..\bitcoindeps\boost_1_55_0\boost;.\GeneratedFiles;.\GeneratedFiles\$(ConfigurationName);.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <TreatWChar_tAsBuiltInType>false</TreatWChar_tAsBuiltInType>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <StringPooling>false</StringPooling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
