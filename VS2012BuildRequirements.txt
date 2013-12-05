@@ -13,10 +13,38 @@ be up 2 and over in a directory called BitcoinDeps.
 
 Just look at the include paths in the projects and you should get the idea.
 
-This source is branched from latest Bitcoin source on December 4th, 2013.
+This source is branched from latest Bitcoin github source on December 4th, 2013.
 
 
-The instructions below tell you how to build them all.
+To set up the build environment, you need to do a lot of work.  When you are finished, you should
+have a BitcoinDeps folder that looks like this:
+
+ Directory of C:\BitcoinDeps
+
+12/04/2013  06:43 PM    <DIR>          .
+12/04/2013  06:43 PM    <DIR>          ..
+12/02/2013  06:34 PM    <DIR>          boost_1_55_0
+12/02/2013  06:30 PM    <DIR>          db-4.7.25.NC
+12/02/2013  06:42 PM    <DIR>          openssl-1.0.1e
+12/04/2013  01:36 PM    <DIR>          protobuf-2.5.0
+02/27/2013  05:14 AM         2,321,934 protoc.exe
+12/04/2013  06:54 PM    <DIR>          qt-everywhere-opensource-src-5.1.1
+12/03/2012  07:18 AM               706 readme.txt
+
+
+**************************************
+http://protobuf.googlecode.com/files/protobuf-2.5.0.zip
+http://protobuf.googlecode.com/files/protoc-2.5.0-win32.zip
+
+One of these is the project source and the other is an exe that compiles .proto code that I just
+placed in the root of the bitcoindeps folder.
+
+You just need to convert the project to VS2012, make sure it's MT and MTd for static c runtime.  
+Also make sure that wchar_t is off.  I put it here:
+
+C:\BitcoinDeps\protobuf-2.5.0
+
+and then I built the release and debug version of libprotobuf.  
 
 *********************************
 
@@ -90,8 +118,6 @@ http://download.qt-project.org/official_releases/qt/5.1/5.1.1/single/qt-everywhe
 
 QT5 should be here:  C:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\
 
-
-//now to build this monster:
 
 edit this:  C:\bitcoindeps\qt-everywhere-opensource-src-5.1.1\qtbase\mkspecs\win32-msvc2012\qmake.conf
 
