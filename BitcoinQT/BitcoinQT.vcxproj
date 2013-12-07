@@ -2145,10 +2145,14 @@
     <CustomBuild Include="..\src\qt\paymentrequest.proto">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bitcoindeps\protoc.exe  --proto_path=%(RootDir)%(Directory) --cpp_out=%(RelativeDir) %(FullPath)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\protoc.exe  --proto_path=%(RootDir)%(Directory) --cpp_out=%(RelativeDir) %(FullPath)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\src\qt\%(FileName).pb.cc</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">protoc'ing %(FullPath)</Message>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bitcoindeps\protoc.exe;%(FullPath)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\bitcoindeps\protoc.exe;%(FullPath)</AdditionalInputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\protoc.exe  --proto_path=%(RootDir)%(Directory) --cpp_out=%(RelativeDir) %(FullPath)</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">protoc'ing %(FullPath)</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\src\qt\%(FileName).pb.cc</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\bitcoindeps\protoc.exe;%(FullPath)</AdditionalInputs>
     </CustomBuild>
     <None Include="..\src\qt\res\movies\update_spinner.mng">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
